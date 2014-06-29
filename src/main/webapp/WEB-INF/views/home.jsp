@@ -67,23 +67,23 @@
 	        	</tr>
 	        	</c:if>
 	        	</c:forEach>   	
-        	</table>
+        	</table><div >
         	<c:if test="${pager.page!=0}"> 
-        	        <form:form method="POST" commandName="pager" >
+        	        <form:form method="POST" commandName="pager" style="display:inline-block;">
         	        <input type="hidden" name="search" value="${pager.search}"/>
 	                <input type="hidden" name="page" value="${pager.page-1}"/>
 	               <input type="hidden" name="sortby" value="${pager.sortby}"/>
                 	<input type="hidden" name="asc" value="${pager.asc}"/>
                 	<form:button type="submit"><<</form:button></form:form>
         	</c:if>
+        	${pager.page+1} / ${pager.maxpage}
         	<c:if test="${pager.page != pager.maxpage-1 }"> 
-            	    <form:form method="POST" commandName="pager" >
+            	    <form:form method="POST" commandName="pager" style="display:inline-block;">
             	    <input type="hidden" name="sortby" value="${pager.sortby}"/>
                 	<input type="hidden" name="asc" value="${pager.asc}"/>
 	                <input type="hidden" name="page" value="${pager.page+1}"/>
-                	<form:button type="submit">>></form:button></form:form></c:if>
-                	${pager.page} 
-                </div>
+                	<form:button type="submit">>></form:button></form:form></c:if></div>
+            </div>
     <script>
     $(document).ready(function () {
         $(".entry").click(function () {
