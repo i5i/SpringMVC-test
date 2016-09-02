@@ -1,14 +1,16 @@
 package net.java.spring.model;
 
+
 public class Org{
-	private int id;
-	private String type;
-	private String location;
-	private String name;
+    private int id;
+    private String type;
+    private String location;
+    private String name;
     private int rate;
     private Integer grade;
     private Float average;
     private Integer count;
+    
     
 	public int getId() {
 		return id;
