@@ -16,9 +16,9 @@
     </head>
     <body>
          <div align="right">
-            <form:form method="POST" commandName="pager" action="${pageContext.request.contextPath}/${pager.type}/0">
-            <input type="hidden" name="sortby" value="${pager.sortby}"/>
-            <input type="hidden" name="asc" value="${pager.asc}"/>
+            <form:form method="POST" commandName="OrgListInfo" action="${pageContext.request.contextPath}/${OrgListInfo.type}/0">
+            <input type="hidden" name="sortby" value="${OrgListInfo.sortby}"/>
+            <input type="hidden" name="asc" value="${OrgListInfo.asc}"/>
 	        <input type="hidden" name="page" value="0"/>
 	        Otsi:
             <form:input path="search"></form:input>
@@ -28,27 +28,27 @@
         <div style="float:left;padding-top:100px;">
         <div style="background-color:Gainsboro;" border="1">
         <a href="${pageContext.request.contextPath}/0">HOME</a> <br>
-        <a <c:if test="${pager.type=='tyyp'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/tyyp/0">tyyp</a><br>
-        <a <c:if test="${pager.type=='söögikoht'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/söögikoht/0">söögikohad</a><br>     
-        <a <c:if test="${pager.type=='remonditöökoda'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/remonditöökoda/0">remonditöökojad</a><br>
-        <a <c:if test="${pager.type=='kino'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/kino/0">kinod</a><br>
-        <a <c:if test="${pager.type=='jne'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/jne/0">jne.</a>
+        <a <c:if test="${OrgListInfo.type=='tyyp'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/tyyp/0">tyyp</a><br>
+        <a <c:if test="${OrgListInfo.type=='söögikoht'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/söögikoht/0">söögikohad</a><br>     
+        <a <c:if test="${OrgListInfo.type=='remonditöökoda'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/remonditöökoda/0">remonditöökojad</a><br>
+        <a <c:if test="${OrgListInfo.type=='kino'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/kino/0">kinod</a><br>
+        <a <c:if test="${OrgListInfo.type=='jne'}"> style="background-color:#ffff99;"</c:if>href="${pageContext.request.contextPath}/jne/0">jne.</a>
         </div>
         </div>
         <div align="center">
 	            <h1>Asutuste Hindamine</h1>
         	    <table border="1" class="OrgTable">
-	        	<c:forEach var="head" items="${pager.sortable}" varStatus="loop">
-	        	<th style="width:190px;"><div style="float:left; padding-left:5px; padding-top:20px;">${pager.headers[loop.count-1]}</div><div align="right">
-	        	    <form:form method="POST" commandName="pager" >
-	        		<input type="hidden" name="search" value="${pager.search}"/>
-	                <input type="hidden" name="pager" value="${pager.page}"/>
+	        	<c:forEach var="head" items="${OrgListInfo.sortable}" varStatus="loop">
+	        	<th style="width:190px;"><div style="float:left; padding-left:5px; padding-top:20px;">${OrgListInfo.headers[loop.count-1]}</div><div align="right">
+	        	    <form:form method="POST" commandName="OrgListInfo" >
+	        		<input type="hidden" name="search" value="${OrgListInfo.search}"/>
+	                <input type="hidden" name="OrgListInfo" value="${OrgListInfo.page}"/>
               	    <input type="hidden" name="sortby" value="${head}"/>
                 	<input type="hidden" name="asc" value="true"/>
                 	<form:button type="submit" class="asc">&#8657;</form:button></form:form>
                 	
-	            	<form:form method="POST" commandName="pager">
-	        		<input type="hidden" name="search" value="${pager.search}"/>
+	            	<form:form method="POST" commandName="OrgListInfo">
+	        		<input type="hidden" name="search" value="${OrgListInfo.search}"/>
 	        		
                		<input type="hidden" name="sortby" value="${head}"/>
                 	<input type="hidden" name="asc" value="false"/>
@@ -57,31 +57,31 @@
 	            </th>
 	        	</c:forEach>
 	            <c:forEach begin="1" end="10" varStatus="status">
-	        	<c:if test="${userList[(pager.page*10)+(status.count-1)].id>0}">
-	        	<tr class="entry" data-url="comment/${userList[(pager.page*10)+(status.count-1)].id}">
-					<td>${userList[(pager.page*10)+(status.count-1)].name}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].type}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].location}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].average}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].count}</td>
+	        	<c:if test="${OrgList[(OrgListInfo.page*10)+(status.count-1)].id>0}">
+	        	<tr class="entry" data-url="comment/${OrgList[(OrgListInfo.page*10)+(status.count-1)].id}">
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].name}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].type}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].location}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].average}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].count}</td>
 	        	</tr>
 	        	</c:if>
 	        	</c:forEach>   	
         	</table><div >
-        	<c:if test="${pager.page!=0}"> 
-        	        <form:form method="POST" commandName="pager" style="display:inline-block;">
-        	        <input type="hidden" name="search" value="${pager.search}"/>
-	                <input type="hidden" name="page" value="${pager.page-1}"/>
-	               <input type="hidden" name="sortby" value="${pager.sortby}"/>
-                	<input type="hidden" name="asc" value="${pager.asc}"/>
+        	<c:if test="${OrgListInfo.page!=0}"> 
+        	        <form:form method="POST" commandName="OrgListInfo" style="display:inline-block;">
+        	        <input type="hidden" name="search" value="${OrgListInfo.search}"/>
+	                <input type="hidden" name="page" value="${OrgListInfo.page-1}"/>
+	               <input type="hidden" name="sortby" value="${OrgListInfo.sortby}"/>
+                	<input type="hidden" name="asc" value="${OrgListInfo.asc}"/>
                 	<form:button type="submit"><<</form:button></form:form>
         	</c:if>
-        	${pager.page+1} / ${pager.maxpage}
-        	<c:if test="${pager.page != pager.maxpage-1 }"> 
-            	    <form:form method="POST" commandName="pager" style="display:inline-block;">
-            	    <input type="hidden" name="sortby" value="${pager.sortby}"/>
-                	<input type="hidden" name="asc" value="${pager.asc}"/>
-	                <input type="hidden" name="page" value="${pager.page+1}"/>
+        	${OrgListInfo.page+1} / ${OrgListInfo.maxpage}
+        	<c:if test="${OrgListInfo.page != OrgListInfo.maxpage-1 }"> 
+            	    <form:form method="POST" commandName="OrgListInfo" style="display:inline-block;">
+            	    <input type="hidden" name="sortby" value="${OrgListInfo.sortby}"/>
+                	<input type="hidden" name="asc" value="${OrgListInfo.asc}"/>
+	                <input type="hidden" name="page" value="${OrgListInfo.page+1}"/>
                 	<form:button type="submit">>></form:button></form:form></c:if></div>
             </div>
     <script>

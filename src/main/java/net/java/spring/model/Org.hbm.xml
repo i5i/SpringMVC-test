@@ -7,7 +7,7 @@
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
-		<property name="name" column="NAME" />
+		<property name="name" column="NAME" not-null="true" unique="true"/>
 		<property name="type" column="TYPE" />
 		<property name="location" column="LOCATION" />
 		<property name="average" column="AVERAGE" />

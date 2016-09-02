@@ -20,9 +20,9 @@
 		<a href="${pageContext.request.contextPath}/admin/addform">Lisa Aukoht</a>
     <body>
          <div align="right">
-            <form:form method="POST" commandName="pager" action="${pageContext.request.contextPath}/admin/0">
-            <input type="hidden" name="sortby" value="${pager.sortby}"/>
-            <input type="hidden" name="asc" value="${pager.asc}"/>
+            <form:form method="POST" commandName="OrgListInfo" action="${pageContext.request.contextPath}/admin/0">
+            <input type="hidden" name="sortby" value="${OrgListInfo.sortby}"/>
+            <input type="hidden" name="asc" value="${OrgListInfo.asc}"/>
 	        <input type="hidden" name="page" value="0"/>
 	        Otsi:
             <form:input path="search"></form:input>
@@ -33,51 +33,51 @@
         <div align="center">
 	            <h1>Asutuste Haldamine</h1>
         	    <table border="1" class="OrgTable">
-	        	<c:forEach var="head" items="${pager.sortable}" varStatus="loop">
-	        	<th style="width:190px;"><div style="float:left; padding-left:5px; padding-top:20px;">${pager.headers[loop.count-1]}</div><div align="right">
-	        	    <form:form method="POST" commandName="pager" >
-	        		<input type="hidden" name="search" value="${pager.search}"/>
+	        	<c:forEach var="head" items="${OrgListInfo.sortable}" varStatus="loop">
+	        	<th style="width:190px;"><div style="float:left; padding-left:5px; padding-top:20px;">${OrgListInfo.headers[loop.count-1]}</div><div align="right">
+	        	    <form:form method="POST" commandName="OrgListInfo" >
+	        		<input type="hidden" name="search" value="${OrgListInfo.search}"/>
               	    <input type="hidden" name="sortby" value="${head}"/>
-              	    <input type="hidden" name="page" value="${pager.page}"/>
+              	    <input type="hidden" name="page" value="${OrgListInfo.page}"/>
                 	<input type="hidden" name="asc" value="true"/>
                 	<form:button type="submit" class="asc">&#8657;</form:button></form:form>
                 	
-	            	<form:form method="POST" commandName="pager">
-	        		<input type="hidden" name="search" value="${pager.search}"/>
+	            	<form:form method="POST" commandName="OrgListInfo">
+	        		<input type="hidden" name="search" value="${OrgListInfo.search}"/>
                		<input type="hidden" name="sortby" value="${head}"/>
-               		<input type="hidden" name="page" value="${pager.page}"/>
+               		<input type="hidden" name="page" value="${OrgListInfo.page}"/>
                 	<input type="hidden" name="asc" value="false"/>
                 	<form:button type="submit" class="desc">&#8659;</form:button>
 	            	</form:form> </div>
 	            </th>
 	        	</c:forEach>
 	            <c:forEach begin="1" end="10" varStatus="status">
-	        	<c:if test="${userList[(pager.page*10)+(status.count-1)].id>0}">
-	        	<tr class="entry" data-url="comment/${userList[(pager.page*10)+(status.count-1)].id}">
-					<td>${userList[(pager.page*10)+(status.count-1)].name}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].type}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].location}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].average}</td>
-					<td>${userList[(pager.page*10)+(status.count-1)].count}</td>
-					<td><a href="${pageContext.request.contextPath}/admin/del/${userList[(pager.page*10)+(status.count-1)].id}">kustuta</a>  <a href="${pageContext.request.contextPath}/admin/editform/${userList[(pager.page*10)+(status.count-1)].id}">muuda</a> <td>
+	        	<c:if test="${OrgList[(OrgListInfo.page*10)+(status.count-1)].id>0}">
+	        	<tr class="entry" data-url="comment/${OrgList[(OrgListInfo.page*10)+(status.count-1)].id}">
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].name}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].type}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].location}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].average}</td>
+					<td>${OrgList[(OrgListInfo.page*10)+(status.count-1)].count}</td>
+					<td><a href="${pageContext.request.contextPath}/admin/del/${OrgList[(OrgListInfo.page*10)+(status.count-1)].id}">kustuta</a>  <a href="${pageContext.request.contextPath}/admin/editform/${OrgList[(OrgListInfo.page*10)+(status.count-1)].id}">muuda</a> <td>
 	        	</tr>
 	        	</c:if>
 	        	</c:forEach>   	
         	</table>
-        	        	<c:if test="${pager.page!=0}"> 
-        	        <form:form method="POST" commandName="pager"  style="display:inline-block;">
-        	        <input type="hidden" name="search" value="${pager.search}"/>
-	                <input type="hidden" name="page" value="${pager.page-1}"/>
-	               <input type="hidden" name="sortby" value="${pager.sortby}"/>
-                	<input type="hidden" name="asc" value="${pager.asc}"/>
+        	        	<c:if test="${OrgListInfo.page!=0}"> 
+        	        <form:form method="POST" commandName="OrgListInfo"  style="display:inline-block;">
+        	        <input type="hidden" name="search" value="${OrgListInfo.search}"/>
+	                <input type="hidden" name="page" value="${OrgListInfo.page-1}"/>
+	               <input type="hidden" name="sortby" value="${OrgListInfo.sortby}"/>
+                	<input type="hidden" name="asc" value="${OrgListInfo.asc}"/>
                 	<form:button type="submit"><<</form:button></form:form>
         	</c:if>
-        	${pager.page+1} / ${pager.maxpage}
-        	<c:if test="${pager.page != pager.maxpage-1 }"> 
-            	    <form:form method="POST" commandName="pager" style="display:inline-block;">
-            	    <input type="hidden" name="sortby" value="${pager.sortby}"/>
-                	<input type="hidden" name="asc" value="${pager.asc}"/>
-	                <input type="hidden" name="page" value="${pager.page+1}"/>
+        	${OrgListInfo.page+1} / ${OrgListInfo.maxpage}
+        	<c:if test="${OrgListInfo.page != OrgListInfo.maxpage-1 }"> 
+            	    <form:form method="POST" commandName="OrgListInfo" style="display:inline-block;">
+            	    <input type="hidden" name="sortby" value="${OrgListInfo.sortby}"/>
+                	<input type="hidden" name="asc" value="${OrgListInfo.asc}"/>
+	                <input type="hidden" name="page" value="${OrgListInfo.page+1}"/>
                 	<form:button type="submit">>></form:button></form:form></c:if>
         </div>
     <script>

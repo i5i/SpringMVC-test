@@ -2,12 +2,12 @@ package net.java.spring.dao;
 
 import java.util.List;
 
-import net.java.spring.model.Review;
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
+
+import net.java.spring.model.Review;
 
 public class ReviewDAOImpl implements ReviewDAO {
 	private SessionFactory sessionFactory;
